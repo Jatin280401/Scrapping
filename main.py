@@ -26,21 +26,12 @@ def get_status_from_icon(element):
 
 
 def Scrape_glassdor():
-    target_url = "https://www.glassdoor.co.in"
+    target_url = "https://www.glassdoor.co.in/Reviews/Blackcoffer-Reviews-E2260916.htm"
     pages_to_scrape = 20
-    option = webdriver.ChromeOptions()
-    option.add_argument("--disable-blink-features=AutomationCountrolled")
-    option.add_experimental_option("excludeSwitches", ["enable-automation"])
-    option.add_experimental_option('useAutomationExtension', False)
-    option.add_argument("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.53 Safari/537.36")
-    driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=option)
-    driver.execute_cdp_cmd("Page.addScriptToEvaluateOnNewDocument", {
-        "source": """
-            Object.defineProperty(navigator, 'webdriver', {
-                get: () => undefined
-            })
-        """
-    })
+    proxy = 'RESIDENTIAL_PROXY_IP:PORT'
+    options = webdriver.ChromeOptions()
+    options.add_argument(f'--proxy-server={proxy}')
+    driver = webdriver.Chrome(options=options)
     driver.maximize_window()
     driver.get(target_url)
     print("="*60)
