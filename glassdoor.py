@@ -1,8 +1,9 @@
 from apify_client import ApifyClient
 import pandas as pd
+import os
 
 
-APIFY_API_TOKEN = "apify_api_LfaH0vAiRmbkdxsB6FK8ybQyapoTji2MtA2F"
+APIFY_API_TOKEN = os.getenv("APIFY_API_TOKEN")
 ACTOR_ID = "60CQman1uPJZgcyd2"
 OUTPUT_FILE = "glassdoor_reviews_apify.xlsx"
 
